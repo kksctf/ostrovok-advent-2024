@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hotel
+    expose:
+      - "5432"
+
+  web:
+    build: src
+    depends_on:
+      - postgres
+    environment:
+      - DB_HOST="postgres"
+      - DB_USER="postgres"
+      - DB_PASSWORD="postgres"
+      - DB_NAME="hotel"
+      - FLAG="Ostrovok{Example_flag20}"
+    ports:
+      - "50051:50051"
+    links:
+      - postgres
+    restart: always

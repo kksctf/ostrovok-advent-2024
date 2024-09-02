@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЧайкоПочта</title>
+
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .bg {
+            /* The image used */
+            background-image: url("/static/index.png");
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .text {
+            height: 200px;
+            width: 300px;
+            padding: 5px;
+            border-radius: 15px;
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            background: white;
+        }
+    </style>
+</head>
+<html>
+
+<body>
+    <div class="text">
+        УВАЖАЕМЫЙ КРАБ, ВЫ НЕ МОЖЕТЕ САМИ ПРИНОСИТЬ ПОЧТУ!!!!!! У НАС ЕСТЬ <strong>СТАНДАРТЫ</strong>!!!!
+        <br /><br /><br />
+        {% if stage==0 %}
+
+        <strong>Агентом пользователя</strong>, доставляющем почту, должны быть сотрудники агенства "Рысь". Они иногда
+        старомодны (даже используют текстовые браузеры), но делают все просто мастерски.
+        Поэтому мы сотрудничаем только с ними.
+
+        {% elif stage==1 %}
+
+        К сожалению, мы можем отправить почту только в  <strong>Индию, штат Гоа</strong>. И наш логистический насест принимает письма <strong>только на языке их региона</strong>.
+
+        {% elif stage==2 %}
+
+        Хоть укажите <strong>от кого</strong> письмо то! Можно и электронный формат.
+
+        {% elif stage==3 %}
+        Вообще-то отправить мы это можем только <strong>2 января</strong>. Только в этот день прилетает самолёт, привозит почту и забирает ее.
+
+        {% elif stage==4 %}
+        Вы пришли почту <strong>принимать</strong> или <strong>отправлять</strong>? Не задерживайте очередь!
+
+        {% endif %}
+    </div>
+    <div class="bg"></div>
+</body>
+
+</html>

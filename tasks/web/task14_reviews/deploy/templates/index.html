@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+    <h1>Welcome to Note App</h1>
+    <p>Please register or log in to continue:</p>
+    <a href="{{ url_for('main.register') }}">Register</a>
+    <a href="{{ url_for('main.login') }}">Log In</a>
+    </div>
+{% endblock %}

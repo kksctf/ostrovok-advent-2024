@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>CCTV Camera #{{id_next - 1}}</title> <!-- tshhhh :D -->
+
+
+    <style>
+        body {height: 100%;}
+
+        td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 5px;
+            min-width: 100px;
+            min-height: 100px;
+
+        }
+
+        .cameras {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .cameras img {
+            object-fit: cover;
+            height: 250px;
+            width: 250px;
+        
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cameras">
+        <table>
+            <tr>
+                <td><img src="{{id_paths[0]}}" alt=""></td>
+                <td><img src="{{id_paths[1]}}" alt=""></td>
+                <td><img src="{{id_paths[2]}}" alt=""></td>
+                <td><img src="{{id_paths[3]}}" alt=""></td>
+            </tr>
+            <tr>
+                <td><img src="{{id_paths[4]}}" alt=""></td>
+                <td><img src="{{id_paths[5]}}" alt=""></td>
+                <td><img src="{{id_paths[6]}}" alt=""></td>
+                <td><img src="{{id_paths[7]}}" alt=""></td>
+            </tr>
+            <tr>
+                <td><img src="{{id_paths[8]}}" alt=""></td>
+                <td><img src="{{id_paths[9]}}" alt=""></td>
+                <td><img src="{{id_paths[10]}}" alt=""></td>
+                <td><img src="{{id_paths[11]}}" alt=""></td>
+            </tr>
+            <tr>
+                <td><img src="{{id_paths[12]}}" alt=""></td>
+                <td><img src="{{id_paths[13]}}" alt=""></td>
+                <td><img src="{{id_paths[14]}}" alt=""></td>
+                <td><img src="{{id_paths[15]}}" alt=""></td>
+            </tr>
+
+        </table>
+    </div>
+
+</body>
+
+</html>

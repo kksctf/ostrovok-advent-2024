@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка доступа</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+    <div class="left-half">
+        <h1>А в ваше проживание входит VIP шведский стол?</h1>
+        <div class="container">
+            <form action="/process" method="post" class="form-container">
+                <label for="username">Выберите пользователя:</label>
+                <select id="username" name="username">
+                    <option value="user1">user1</option>
+                    <option value="user2">user2</option>
+                    <option value="admin">admin</option>
+                </select>
+
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" placeholder="Введите пароль...">
+
+                <button type="submit">Проверить</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="right-half"></div>
+
+</body>
+</html>

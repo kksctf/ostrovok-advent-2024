@@ -1,0 +1,25 @@
+version: "3"
+services:
+  web-front:
+    build: ./front
+    ports:
+      - "7513:1337"
+  cleaning-chaika-local:
+    build: ./app1/
+    expose:
+      - 80
+  doorman-chaika-local:
+    build: ./app2/
+    expose:
+      - 80
+  laundry-chaika-local:
+    build: ./app3/
+    expose:
+      - 80
+  offices-chaika-local:
+    build: ./app4/
+    expose:
+      - 80
+    environment:
+      - FLAG="Ostrovok{Example_flag13}"
+  

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-table">
+    <h1>User Logs</h1>
+    <a href="{{ url_for('main.export_logs') }}" class="btn btn-primary">Export as JSON</a>
+    <table>
+        <tr>
+            <th>Timestamp</th>
+            <th>User</th>
+            <th>Action</th>
+            <th>Text</th>
+        </tr>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.timestamp }}</td>
+            <td>{{ log.user.username }}</td>
+            <td>{{ log.action }}</td>
+            <td>{{ log.text }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('main.index') }}">Back to Home</a>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+name: Хитрый краб чайке не товарищ
+description: |-
+  У Чаек беда — их штатный сисадмин уехал в первый отпуск за 15 лет и что-то упало на бэке. 
+  Всё на столько плохо, что чайки решили обратиться к крабам. 
+  
+  Но кто сказал, что крабы должны помогать чайкам, после стольких произошедших событий? 
+
+author: greg0r0
+category: web
+flag: crab{lfi_lfr_path_traversal_the_classic_trio}
+server_port: null
+is_http: true
+domain_prefix: null

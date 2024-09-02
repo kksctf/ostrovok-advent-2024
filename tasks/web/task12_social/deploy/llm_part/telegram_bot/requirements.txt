@@ -1,0 +1,7 @@
+python-telegram-bot==21.4
+pymongo==4.8.0
+openai==1.40.1
+pydantic-settings
+pydantic
+loguru
+cryptography

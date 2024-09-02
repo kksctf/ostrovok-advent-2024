@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>ACCTL PANEL</title>
+
+
+    <style>
+        /* The slider itself */
+        .slider {
+            -webkit-appearance: none;
+            /* Override default CSS styles */
+            appearance: none;
+            width: 100%;
+            /* Full-width */
+            height: 25px;
+            /* Specified height */
+            background: #d3d3d3;
+            /* Grey background */
+            outline: none;
+            /* Remove outline */
+            opacity: 0.7;
+            /* Set transparency (for mouse-over effects on hover) */
+            -webkit-transition: .2s;
+            /* 0.2 seconds transition on hover */
+            transition: opacity .2s;
+        }
+
+        /* Mouse-over effects */
+        .slider:hover {
+            opacity: 1;
+            /* Fully shown on mouse-over */
+        }
+
+        /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            /* Override default look */
+            appearance: none;
+            width: 25px;
+            /* Set a specific slider handle width */
+            height: 25px;
+            /* Slider handle height */
+            background: #317de2;
+            /* Green background */
+            cursor: pointer;
+            /* Cursor on hover */
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            /* Set a specific slider handle width */
+            height: 25px;
+            /* Slider handle height */
+            background: #0b96d6;
+            /* Green background */
+            cursor: pointer;
+            /* Cursor on hover */
+        }
+
+        .main {
+            border: 1px solid whitesmoke;
+            border-radius: 15px;
+            display: block;
+
+            padding: 15px;
+            background-color: white;
+
+            width: 250px;
+            height: auto;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+
+        body {
+            background-color: rgb(141, 185, 225);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+
+
+        input {
+            margin-top: 2px;
+            width: 100%;
+        }
+
+        * {
+            font-family: monospace;
+        }
+
+        .condimg {
+            width: 250px;
+            height: 250px;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+        }
+
+        .result-box {
+            
+            box-sizing: border-box;
+            width: 100%;
+            padding:5%;
+
+            margin-top: 5%;
+            margin-bottom: 5%;
+            
+            text-align: left;
+            background-color: rgb(224, 223, 223);
+            word-wrap: break-word;
+        }
+
+        .nonedisplay {
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+        
+        function form_onsubmit(event) {
+            var form = document.getElementById('submission');
+            var req = new XMLHttpRequest();
+            var formdata = new FormData(form);
+            var temp = parseInt(formdata.get("temp"))
+            if (temp > 0)
+            {
+                formdata.set("temp", "+"+temp);
+            }
+
+            req.open("POST", '/acctl', true);
+            req.setRequestHeader("Content-Type", "application/json");
+            req.send(JSON.stringify(Object.fromEntries(formdata)));
+
+            req.onreadystatechange = function() {
+                if (req.readyState == XMLHttpRequest.DONE)
+                {
+                    var res_block = document.getElementById("result-box")
+                    res_block.classList.remove('nonedisplay')
+                    var status = JSON.parse(req.response)
+                    
+                    res_block.innerText = status.Status
+                }
+            }
+
+            event.preventDefault()
+        }
+        function init(){
+            document.getElementById('submission').onsubmit = form_onsubmit;
+        }
+        window.onload = init 
+
+
+    </script>
+
+</head>
+
+<body>
+    <div class="condimg">
+        <img style='height: 100%; width: 100%;' src="static/air-conditioner.png"/>
+    </div>
+    <div class="main">
+        <center><h1>AC Control Panel</h1></center>
+        <form id="submission" onsubmit="return form_onsubmit(event)">
+            <div class="form-room">
+                <label for="room">Room number: </label> </br>
+                <input name="room" type="text" id="room"> </br>
+            </div>
+
+            <div class="form-acid">
+                <label for="ac_id">Air Conditioner Pin Code: </label></br>
+                <input name="ac_id" type="text" id="ac_id" minlength="8" maxlength="8"></br>
+            </div>
+
+            <div class="form-temp">
+                <label for="temp">Choose temperature: </label></br>
+                <input for="temp" name="temp" type="range" min="-10" max="25" value="0" class="slider" id="temp-range">
+                <label for="temp">-10&deg;C </label>
+                <label for="temp" style="float: right;">+25&deg;C </label>
+            </div>
+
+            </br>
+
+            <center>
+                <button type="submit">Set temperature</button>
+            </center>
+        </form>
+
+        <center>
+            <div id="result-box" class="result-box nonedisplay">
+                
+            </div>
+        </center>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>CHAYKA SYSTEM</title>
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:700" rel="stylesheet">
+    
+    <script>
+// Move GIF with mouse
+var lFollowX = 0;
+    var lFollowY = 0;
+    var x = 0;
+    var y = 0;
+    var friction = 1 / 30;
+
+	function moveBackground() {
+
+		x += (lFollowX - x) * friction;
+		y += (lFollowY - y) * friction;
+
+		$('.positionx').text(x);
+		$('.positiony').text(y);
+
+		translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.2)';
+
+		$('.stage').css({
+			'-webit-transform': translate,
+			'-moz-transform': translate,
+			'transform': translate
+		});
+
+		window.requestAnimationFrame(moveBackground);
+
+	}
+
+	$(window).on('mousemove click', function(e) {
+
+		var lMouseX = Math.max(-100, Math.min(100, $(window).width() / 2 - e.clientX));
+		var lMouseY = Math.max(-100, Math.min(100, $(window).height() / 2 - e.clientY));
+		lFollowX = (200 * lMouseX) / 100;
+		lFollowY = (80 * lMouseY) / 100;
+
+	});
+
+	moveBackground();
+
+	// Random number generator
+	setInterval(function(){
+		ChangeNumber1(); 
+		ChangeNumber2(); 
+		ChangeNumber3(); 
+	}, 50);
+	function ChangeNumber1() {
+		var newNumber = Math.floor(Math.random(9) * 1000000);
+		$('#randomnumber1').text(newNumber);
+	}
+	function ChangeNumber2() {
+		var newNumber = Math.floor(Math.random(9) * 100000000);
+		$('#randomnumber2').text(newNumber);
+	}
+	function ChangeNumber3() {
+		var newNumber = Math.floor(Math.random(9) * 10000000000);
+		$('#randomnumber3').text(newNumber);
+	}
+
+	setInterval(function(){
+		ChangeNumber4(); 
+	}, 1500);
+	function ChangeNumber4() {
+		var newNumber = Math.floor(Math.random(9) * 100000);
+		$('#randomscan').text(newNumber);
+	}
+
+	// Load in dimensions
+	setTimeout(function(){ $('.dimension1').addClass('show') }, 1000);
+	setTimeout(function(){ $('.dimension2').addClass('show') }, 2000);
+	setTimeout(function(){ $('.dimension3').addClass('show') }, 3000);
+	setTimeout(function(){ $('.dimension4').addClass('show') }, 4000);
+	setTimeout(function(){ $('.dimension5').addClass('show') }, 5000);
+    </script>
+
+    <style>
+        html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{font-size:100%;font:inherit;padding:0;border:0;margin:0;vertical-align:baseline}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}.clear{clear:both}
+.sticky{}.bypostauthor{}.wp-caption{}.wp-caption-text{}.gallery-caption{}.alignright{}.alignleft{}.aligncenter{}
+
+textarea:focus, input:focus{outline: none;}
+*:focus {outline: none;}
+
+body {
+	width: 100%;
+	font-family: 'Inconsolata', monospace;
+	-webkit-font-smoothing: antialiased;
+	line-height: 1.1;
+    background-color: #131313;
+    background:url('static/83780a8cb4a99fffd459d7445875ff246ea92fc3.gifv');
+    background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+    height:100%;
+    width:100%;
+
+    
+}
+
+.wrapper {
+	width: 100vw;
+	height: 100vh;
+	float: left;
+	box-sizing: border-box;
+	position: relative;
+	overflow: hidden;
+    
+    background-color: rgba(244, 9, 9, 0.601);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: invert(80%);
+}
+
+.title {
+  width: 100%;
+  height: 20vh;
+  display: table;
+  text-align: center;	
+  box-sizing: border-box;
+}
+.title h1 {
+	font-size: 50px;
+	color: white;	
+  display: table-cell; 
+  vertical-align: middle;
+}
+
+.vision {
+	width: 100%;
+	height: 80vh;
+	position: relative;
+	overflow: hidden;
+}
+
+.stage {
+	width: 100%;
+  height: 100%;    
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+	background-image: url('');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.overlay {
+	width: 100%;
+  height: 100%;
+  position: relative;
+  background-image: url('');
+	background-repeat: repeat;
+	background-position: center;
+}
+
+.overlay .positionals {
+	width: 25%;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 50px;
+	left: 50px;
+	text-align: left;
+}
+.overlay .positionals p {font-size: 16px;}
+
+.overlay .model {
+	width: 25%;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 50px;
+	right: 50px;
+	text-align: right;
+}
+.overlay .model p {font-size: 16px;}
+
+.overlay .left {
+	width: 40%;
+	position: absolute;
+	top: 50px;
+	left: 50px;
+}
+.overlay .right {
+	width: 40%;
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	text-align: right;
+}
+.overlay p {
+	font-size: 40px;
+	color: white;
+	margin: 0 auto;	
+}
+.overlay .center {
+	width: 50%;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 50px;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+.overlay .center p {font-size: 60px;}
+.overlay .center p span {opacity: 1;}
+span.letter1 {
+	-webkit-animation: letterone 1s infinite;
+  animation: letterone 1s infinite;
+}
+span.letter2 {
+	-webkit-animation: lettertwo 1s infinite;
+  animation: lettertwo 1s infinite;
+}
+span.letter3 {
+	-webkit-animation: letterthree 1s infinite;
+  animation: letterthree 1s infinite;
+}
+span.letter4 {
+	-webkit-animation: letterfour 1s infinite;
+  animation: letterfour 1s infinite;
+}
+span.letter5 {
+	-webkit-animation: letterfive 1s infinite;
+  animation: letterfive 1s infinite;
+}
+span.letter6 {
+  -webkit-animation: lettersix 0.75s infinite;
+  animation: lettersix 0.75s infinite;
+}
+
+@-webkit-keyframes letterone {80% {opacity: 0;}}
+@keyframes letterone {80% {opacity: 0;}}
+
+@-webkit-keyframes lettertwo {85% {opacity: 0;}}
+@keyframes lettertwo {85% {opacity: 0;}}
+
+@-webkit-keyframes letterthree {90% {opacity: 0;}}
+@keyframes letterthree {90% {opacity: 0;}}
+
+@-webkit-keyframes letterfour {95% {opacity: 0;}}
+@keyframes letterfour {95% {opacity: 0;}}
+
+@-webkit-keyframes letterfive {100% {opacity: 0;}}
+@keyframes letterfive {100% {opacity: 0;}}
+
+@-webkit-keyframes lettersix {100% {opacity: 0;}}
+@keyframes lettersix {100% {opacity: 0;}}
+
+
+p.dimension1,
+p.dimension2,
+p.dimension3,
+p.dimension4,
+p.dimension5 {opacity: 0;}
+
+p.dimension1.show,
+p.dimension2.show,
+p.dimension3.show,
+p.dimension4.show,
+p.dimension5.show {opacity: 1;}
+
+p.dimension5.show {
+	-webkit-animation: fit 1s infinite;
+  animation: fit 1s infinite;
+}
+@-webkit-keyframes fit {100% {opacity: 0;}}
+@keyframes fit {100% {opacity: 0;}}
+
+
+
+
+/* 
+----------
+BELOW 1400
+----------
+*/
+@media screen and (max-width: 1399px) {
+
+  .overlay p {font-size: 30px;}
+  
+}
+
+/* 
+----------
+BELOW 1000
+----------
+*/
+@media screen and (max-width: 999px) {
+  
+  .title h1 {font-size: 40px;}
+  .overlay p {font-size: 20px;}
+  
+}
+    </style>
+</head>
+<body>
+<!-- Wrapper -->
+<div class="wrapper">
+    
+    <!-- Title -->
+		<div class="title">
+      <h1>CHAYKA VISION V0.0.13.37<span class="letter6">_</span></h1>
+    </div>
+
+		<!-- Vision -->
+		<div class="vision">
+
+			<!-- Stage -->
+			<div class="stage"></div>
+
+			<!-- Overlay -->
+			<div class="overlay">
+
+				<!-- Positionals -->
+				<div class="positionals">
+					<p>X <span class="positionx"></span></p>
+					<p>Y <span class="positiony"></span></p>
+				</div>
+
+				<!-- Model -->
+				<div class="model">
+					<p>Model T-1337</p>
+					<p>Sys Ver 31.33.7</p>
+          <p>Ostrovok Cyberdyne Systems</p>
+				</div>
+
+				<!-- Left -->
+				<div class="left">
+
+					<p>SYSTEM BOOT</p>
+					<p>ANALYSIS****</p>
+					<p id="randomnumber1"></p>
+					<p id="randomnumber2"></p>
+					<p id="randomnumber3"></p>
+
+					<br><br><br><br>
+
+					<p>THREAT ASSESSMENT</p>
+					<p>******************</p>
+					<p>TOLERANCE LVL4</p>
+					<p>ENGAGE<span class="letter6">_</span></p>
+
+				</div>
+
+				<!-- Center -->
+				<div class="center">
+					<p>
+						<span class="letter1">M</span><span class="letter2">A</span><span class="letter3">T</span><span class="letter4">C</span><span class="letter5">H</span><span class="letter6">_</span>
+					</p>
+				</div>
+
+				<!-- Right -->
+				<div class="right">
+
+					<p>SCAN MODE <span id="randomscan">0xCAFEBEEF</span></p>
+					<p>RESET TO ACQUISITION</p>
+					<p>TARGET GRADE: CRAB<span class="letter6">_</span></p>
+
+					<br><br><br><br>
+
+					<p>VISUAL SCAN</p>
+					<p>************</p>
+					<p class="dimension1">HGHT 0393</p>
+					<p class="dimension2">WGHT 9882</p>
+					<p class="dimension3">NECK 3422</p>
+					<p class="dimension4">BACK 1112</p>
+					<p class="dimension5">FIT PROBABILITY 93%</p>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</body>
+</html>

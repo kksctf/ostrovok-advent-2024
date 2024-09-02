@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package hotel;
+
+option go_package = "example.com/ostrovok/hotel";
+
+// The Hotel service definition.
+service HotelService {
+  // Check room availability.
+  rpc CheckAvailability (AvailabilityRequest) returns (AvailabilityResponse);
+
+  // Book a room.
+  rpc BookRoom (BookingRequest) returns (BookingResponse);
+
+  // Cancel a booking.
+  rpc CancelBooking (CancellationRequest) returns (CancellationResponse);
+}
+
+// The request message containing the room type.
+message AvailabilityRequest {
+  string room_type = 1;
+  string check_in_date = 2;
+  string check_out_date = 3;
+}
+
+// The response message containing the availability status.
+message AvailabilityResponse {
+  bool available = 1;
+  string message = 2;
+}
+
+// The request message for booking a room.
+message BookingRequest {
+  string room_type = 1;
+  string guest_name = 2;
+  string check_in_date = 3;
+  string check_out_date = 4;
+}
+
+// The response message for a booking request.
+message BookingResponse {
+  bool success = 1;
+  string confirmation_number = 2;
+  string message = 3;
+}
+
+// The request message for canceling a booking.
+message CancellationRequest {
+  string confirmation_number = 1;
+}
+
+// The response message for a cancellation request.
+message CancellationResponse {
+  bool success = 1;
+  string message = 2;
+}

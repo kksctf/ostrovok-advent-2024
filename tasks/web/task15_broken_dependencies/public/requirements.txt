@@ -1,0 +1,5 @@
+loguru
+sqlalchemy
+schedule
+pydantic
+missingpackage

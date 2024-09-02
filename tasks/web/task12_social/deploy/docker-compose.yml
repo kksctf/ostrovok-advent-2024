@@ -1,0 +1,10 @@
+version: "3"
+services:
+  web:
+    build: .
+    environment:
+      - FLAG_ENC_KEY=92LkXZb9Co1yh9v8D4vXdFDYuMTCcKLGH0kugYhYieOsUfPz1uXvkZ1A1vehAIMU
+      - FLAG_SALT=34pv5o345vi3451
+      - BOT_USERNAME=ChaykaHotelsTriagebot
+    ports:
+      - "7500:8080"

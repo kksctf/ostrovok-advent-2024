@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<h1>Your Notes</h1>
+
+<!-- Форма для добавления новой заметки -->
+<form action="{{ url_for('main.add_note') }}" method="POST">
+    <input type="text" name="note" placeholder="New note" required>
+    <button type="submit">Add Note</button>
+</form>
+
+<!-- Список заметок -->
+<ul>
+    {% for note in notes %}
+    <li>
+        <!-- Форма для редактирования заметки -->
+        <form action="{{ url_for('main.edit_note', note_id=note.id) }}" method="POST" style="display: inline;">
+            <input type="text" name="note" value="{{ note.text }}" required>
+            <button type="submit">Save</button>
+        </form>
+        <!-- Ссылка для удаления заметки -->
+        <a href="{{ url_for('main.delete_note', note_id=note.id) }}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url_for('main.logout') }}">Logout</a>
+</div>
+{% endblock %}

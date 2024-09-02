@@ -1,0 +1,14 @@
+name: Broken dependencies
+description: |-
+  Чайки чего-то наломали в инфраструктуре отеля и теперь мы не можем
+  пополнять запасы в мини-барах номеров. Нужно срочно исправить это
+  недоразумение. Правда, мы пока не смогли получить доступ к репозиторию
+  с кодом. Может, есть какой-то другой путь?
+  Флаг в `env:FLAG`
+  
+author: "@anfinogenov"
+category: web
+flag: crab{w3_should_n3v3r_b3_abs0lutely_sur3_in_any_d3pend3ncy}
+server_port: null
+is_http: true
+domain_prefix: null

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Антиресторан</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Антиресторан</h1>
+            <div class="balance">Ваш баланс: <span id="balance">{{ balance }}</span> монет</div>
+        </div>
+    </header>
+
+    <hr class="divider">
+
+    <section class="description">
+        <div class="container">
+            <p>Добро пожаловать в Антиресторан, где подают самые редкие и необычные блюда со всех уголков воображаемого
+                мира. Приготовьтесь к гастрономическому путешествию, которое вы никогда не забудете!</p>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="menu">
+        <div class="container">
+            <div class="dish">
+                <img src="../static/1.png" alt="Морской еж в медовом соусе">
+                <h3>Морской еж в медовом соусе</h3>
+                <p>Уникальное сочетание вкусов, которое никого не оставит равнодушным.</p>
+                <button onclick="buyDish('Морской еж в медовом соусе', 100)">Купить (100 монет)</button>
+            </div>
+
+            <div class="dish">
+                <img src="../static/2.png" alt="Жареные водоросли с мармеладом">
+                <h3>Жареные водоросли с мармеладом</h3>
+                <p>Кисло-сладкий деликатес, идеально подходящий для любителей необычного.</p>
+                <button onclick="buyDish('Жареные водоросли с мармеладом', 75)">Купить (75 монет)</button>
+            </div>
+
+            <div class="dish">
+                <img src="../static/flag.png" alt="Флаговая рыба на гриле">
+                <h3>Флаговая рыба на гриле</h3>
+                <p>Очень редкое блюдо, которое подают холодным.</p>
+                <button onclick="buyDish('Флаговая рыба на гриле', 100000)">Купить (100000 монет)</button>
+            </div>
+
+            <div class="dish">
+                <img src="../static/3.png" alt="Суп из черного песка">
+                <h3>Суп из черного песка</h3>
+                <p>Легендарный суп, известный своим загадочным вкусом.</p>
+                <button onclick="buyDish('Суп из черного песка', 200)">Купить (200 монет)</button>
+            </div>
+
+            <div class="dish">
+                <img src="../static/4.png" alt="Карп в ананасовом соусе">
+                <h3>Карп в ананасовом соусе</h3>
+                <p>Освежающее блюдо с тропическими нотками.</p>
+                <button onclick="buyDish('Карп в ананасовом соусе', 150)">Купить (150 монет)</button>
+            </div>
+
+            <div class="dish">
+                <img src="../static/5.png" alt="Огненные креветки под лавандовым соусом">
+                <h3>Огненные креветки под лавандовым соусом</h3>
+                <p>Смесь пикантного и сладкого, с ароматом лаванды.</p>
+                <button onclick="buyDish('Огненные креветки под лавандовым соусом', 2500)">Купить (2500 монет)</button>
+            </div>
+
+            <div class="dish">
+                <img src="../static/6.png" alt="Медуза с карамельным соусом">
+                <h3>Медуза с карамельным соусом</h3>
+                <p>Желейный десерт с неожиданно сладким послевкусием.</p>
+                <button onclick="buyDish('Медуза с карамельным соусом', 120)">Купить (120 монет)</button>
+            </div>
+
+            <div class="dish">
+                <img src="../static/7.png" alt="Смузи из кальмара с мятой">
+                <h3>Смузи из кальмара с мятой</h3>
+                <p>Освежающее и пикантное сочетание морепродукта с мятой.</p>
+                <button onclick="buyDish('Смузи из кальмара с мятой', 1800)">Купить (1800 монет)</button>
+            </div>
+
+            <div class="dish">
+                <img src="../static/8.png" alt="Тартар из лосося с чипсами из водорослей">
+                <h3>Крабовый суп с мандарином</h3>
+                <p>Горячее наслаждение с хрустящей добавкой.</p>
+                <button onclick="buyDish('Крабовый суп с мандарином', 3000)">Купить (3000 монет)</button>
+            </div>
+
+            <div class="dish">
+                <img src="../static/9.png" alt="Морская звезда в малиновом соусе">
+                <h3>Морская звезда в малиновом соусе</h3>
+                <p>Эстетическое и вкусное блюдо с нотками сладкой малины.</p>
+                <button onclick="buyDish('Морская звезда в малиновом соусе', 2200)">Купить (2200 монет)</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        function buyDish(dishName, price) {
+            fetch('/buy', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ dish: dishName, price: price })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.alert) {
+                        alert(data.alert);
+                    } else if (data.success) {
+                        document.getElementById('balance').innerText = data.balance;
+                        alert('Вы купили: ' + dishName);
+                        window.location.href = 'tips';
+                    } else {
+                        alert(data.message || 'Ошибка!');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+
+</html>

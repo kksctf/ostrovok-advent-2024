@@ -1,0 +1,18 @@
+name: Chayka Hotels Wifi
+
+description: |-
+  При заезде в отель Чайки вы хотели получить пароль от Wi-Fi, но никто вам не смог помочь… 
+  
+  Придётся брать всё в свои клешни и **подобрать** пароль от Wi-Fi самому.
+
+author: "@greg0r0"
+
+category: web
+
+flag: crab{checkin_completed}
+
+server_port: 7500
+
+is_http: true
+
+domain_prefix: null

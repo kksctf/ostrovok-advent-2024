@@ -1,0 +1,20 @@
+name: eXXSternal greeting
+
+description: |-
+  На нашем курорте новый год, но вот беда -- нет ни снега ни ёлок.
+
+  Да та же система поздравлени от Чаек работает очень плохо. Не все поздравления видны.
+
+  Может быть как-то можно посмотреть все поздравления из аккаунта администратора?...
+
+author: rubikoid
+
+category: web
+
+flag: crab{f3l1c1t4t10n_4nd_h4ppy_n3w_y34r_f0r_b0ss}
+
+server_port: null
+
+is_http: true
+
+domain_prefix: null

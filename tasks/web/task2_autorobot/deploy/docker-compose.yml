@@ -1,0 +1,8 @@
+version: "3"
+services:
+  web:
+    build: .
+    environment:
+      - FLAG="Ostrovok{Example_flag2}"
+    ports:
+      - "7501:1337"

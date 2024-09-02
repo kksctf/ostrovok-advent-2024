@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чаевые</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Антиресторан</h1>
+            <div class="balance">Ваш баланс: <span id="balance">{{ balance }}</span> монет</div>
+        </div>
+    </header>
+
+    <hr class="divider">
+
+    <div class="app">
+        <header class="tip-header"><h1>Cпасибо за покупку!</h1></header>
+        <form id="tips-form">
+            <label for="amount">Сумма чаевых:
+                <input type="number" id="tip-amount" name="tip-amount" required>
+            </label><br>
+            <button class="tip-button" type="submit">Оставить чаевые</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('tips-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const tipAmount = document.getElementById('tip-amount').value;
+            fetch('/tips', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ amount: tipAmount })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Спасибо за чаевые!');
+                window.location.href = '/';
+            } else {
+                alert('Произошла ошибка при обработке чаевых.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
+</body>
+</html>

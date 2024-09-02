@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  pypi:
+    build: pypi
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    command: ["run", "--port", "8080", "/data/packages", "--disable-fallback", "-a", ".", "-P", ".", "--overwrite"]
+
+  api:
+    build: .
+    ports:
+      - "23232:8000"
+    links:
+      - pypi
+    environment:
+      - FLAG="Ostrovok{Example_flag20}"
+    

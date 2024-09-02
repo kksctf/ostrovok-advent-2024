@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авиачайка - Бронирование</title>
+    <style>
+        @font-face {
+            font-family: "Spoof Medium";
+            src: url(https://of.worldota.net/fonts/spoof/Spoof-Medium.woff2);
+        }
+
+        @font-face {
+            font-family: "PT Root UI";
+            src: url(https://of.worldota.net/fonts/ptrootui/pt-root-ui_vf.woff2);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'PT Root UI', Arial, sans-serif;
+            display: block;
+        }
+
+        .header {
+            background-color: white;
+            padding: 15px;
+            text-align: left;
+            color: #0D41D2;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Spoof Medium', Arial, sans-serif;
+        }
+
+        .logo {
+            color: #0D41D2;
+        }
+
+        .content {
+            display: block;
+            width: 100%;
+        }
+
+        .section {
+            display: block;
+            padding: 50px 20px;
+            position: relative;
+        }
+
+        .section.mojito {
+            background-color: #ACEF81;
+            padding-bottom: 100px;
+        }
+
+        .section.blue {
+            background: linear-gradient(to right, #0D41D2, #6BAFFF);
+            padding-bottom: 60px;
+            height: auto;
+            text-align: center;
+            color: white;
+        }
+
+        .section.white {
+            background-color: white;
+            padding-top: 20px;
+        }
+
+        /* Стиль для надписи */
+        .promo-text {
+            color: #0D41D2;
+            font-size: 32px;
+            font-weight: medium;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Spoof Medium', Arial, sans-serif;
+        }
+
+        /* Стиль формы */
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%; /* Размер формы - половина ширины контейнера */
+            max-width: 600px; /* Ограничение по максимальной ширине */
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 20px); /* Центровка формы и смещение на треть вниз */
+            z-index: 2; /* Убедиться, что форма над синим блоком */
+        }
+
+        label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        input[type="file"] {
+            flex-grow: 1; /* Allows the input to grow and take available space */
+            margin-top: 0; /* Remove top margin for better alignment */
+            margin-bottom: 10px; /* Remove bottom margin for better alignment */
+            margin-left: 5%;
+        }
+
+        button {
+            background-color: #0D41D2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: darkblue;
+        }
+
+        /* Стили для блока с бронированиями */
+        .booking-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px; /* Пробел между блоками бронирований */
+            flex-wrap: wrap;
+        }
+
+        .booking-title {
+            font-size: 28px;
+            font-family: 'Spoof Medium', Arial, sans-serif;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: white;
+            width: 100%;
+        }
+
+        .booking-block {
+            background-color: white;
+            color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Ширина блока бронирования */
+            text-align: left;
+            flex: 1 1 300px; /* Позволяет блокам занимать одинаковое место */
+            box-sizing: border-box;
+        }
+
+        .booking-info {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .booking-link {
+            font-size: 16px;
+            color: #0D41D2;
+            text-decoration: none;
+        }
+
+        .booking-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Стили для блога о путешествиях */
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .blog-title {
+            font-family: 'Spoof Medium', Arial, sans-serif;
+            font-size: 32px;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .blog-post {
+            display: inline-block;
+            vertical-align: top;
+            width: 30%;
+            margin-right: 3.3%;
+            box-sizing: border-box;
+        }
+
+        .blog-post img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .category {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .post-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .date {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .blog-post:last-child {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Верхняя часть страницы с меню -->
+    <div class="header">
+        <span class="logo">Авиачайка</span>
+    </div>
+
+    <!-- Нижняя часть страницы с секциями -->
+    <div class="content">
+        <!-- Секция цвета мохито с формой -->
+        <div class="section mojito">
+            <div class="promo-text">Ооооочень много отелей где подают вареных крабов!</div>
+            <form action="/" method="post" enctype="multipart/form-data">
+                <label for="file">Загрузите XML-файл с бронированием:</label>
+                <input type="file" name="file" id="file" accept=".xml">
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+
+        <!-- Синяя секция с бронированиями -->
+        <div class="section blue">
+            <div class="booking-title">Ваши бронирования</div>
+            <div class="booking-container">
+                <!-- Первое бронирование -->
+                <div class="booking-block">
+                    <div class="booking-info">Отель: Крабовый рай<br>Дата: 15.08.2024<br>Город: Крабоград</div>
+                    <a href="./static/booking1.xml" class="booking-link" download>Скачать бронирование</a>
+                </div>
+
+                <!-- Второе бронирование -->
+                <div class="booking-block">
+                    <div class="booking-info">Отель: Морские дали<br>Дата: 18.08.2024<br>Город: Рыбск</div>
+                    <a href="./static/booking2.xml" class="booking-link" download>Скачать бронирование</a>
+                </div>
+
+                <!-- Третье бронирование -->
+                <div class="booking-block">
+                    <div class="booking-info">Отель: Вилла на берегу<br>Дата: 22.08.2024<br>Город: Океанск</div>
+                    <a href="./static/booking3.xml" class="booking-link" download>Скачать бронирование</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Белая секция -->
+        <div class="section white">
+            <div class="blog-container">
+                <h2 class="blog-title">Блог о путешествиях &rsaquo;</h2>
+                <div class="blog-post">
+                    <img src="./static/1.jpg" alt="Первое изображение">
+                    <p class="category">КАК ПУТЕШЕСТВОВАТЬ</p>
+                    <h3 class="post-title">Гастрономический гид по Крабостану</h3>
+                    <p class="date">13.08.2024</p>
+                </div>
+                <div class="blog-post">
+                    <img src="./static/2.jpg" alt="Второе изображение">
+                    <p class="category">КУДА ПОЕХАТЬ</п>
+                    <h3 class="post-title">Посмотрите на самых необычных животных, притворяющихся крабами!</h3>
+                    <p class="date">09.08.2024</п>
+                </div>
+                <div class="blog-post">
+                    <img src="./static/3.jpg" alt="Третье изображение">
+                    <p class="category">ОТЕЛИ</п>
+                    <h3 class="post-title">10 исторических квартир в Краб-бурге</h3>
+                    <p class="date">08.08.2024</п>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                Советуем вам ознакомиться со всеми направлениями наших полетов, особенно с /etc/flag.txt!
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChaikaRoomServices</title>
+    <style>
+        @font-face {
+            font-family: "Spoof Medium";
+            src: url(https://of.worldota.net/fonts/spoof/Spoof-Medium.woff2);
+        }
+
+        @font-face {
+            font-family: "PT Root UI";
+            src: url(https://of.worldota.net/fonts/ptrootui/pt-root-ui_vf.woff2);
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'PT Root UI', Arial, sans-serif;
+        }
+        body {
+            background-color: rgb(141, 185, 225);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main {
+            border: 1px solid whitesmoke;
+            border-radius: 15px;
+            display: block;
+
+            padding: 15px;
+            background-color: white;
+
+            width: auto;
+            height: auto;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .header {
+            background-color: white;
+            padding: 15px;
+            text-align: left;
+            color: #0D41D2;
+            font-size: 32px;
+            font-weight: bold;
+            font-family: 'Spoof Medium', Arial, sans-serif;
+        }
+    </style>
+    <script>
+        function getHelloFromService(serveraddr) {
+            var req = new XMLHttpRequest();
+            req.open("GET", '/request/http://' + serveraddr + "/", false);
+            console.log("REQUESTING " + '/request/http://' + serveraddr + "/");
+            req.send();
+            return resp = JSON.parse(JSON.parse(req.response)['Data'])['message'];
+        }
+
+        window.onload = (event) => {
+            var req = new XMLHttpRequest();
+            req.open("GET", "/available", true);
+            req.send();
+
+            req.onreadystatechange = function () {
+                if (req.readyState == XMLHttpRequest.DONE) {
+                    var res_block = document.getElementById("main")
+                    var parsed_data = JSON.parse(req.response)
+
+                    for (var i = 0; i < parsed_data.length; i++) {
+                        var obj = parsed_data[i];
+                        if (obj['is_public']) {
+                            var helloresp = getHelloFromService(obj['addr'])
+
+                            var iDiv = document.createElement("div");
+                            iDiv.className = "Element";
+                            iDiv.innerHTML = obj['name'] + " :: " + obj['addr'] + "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + helloresp;
+                            res_block.appendChild(iDiv);
+                        }
+                    }
+                }
+            }
+        };
+
+    </script>
+</head>
+
+<body>
+    <div id="main" class="main">
+        <center><div class="header">ChaikaHotels :: Room Services</div></center>
+    </div>
+</body>
+
+</html>
