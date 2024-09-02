@@ -36,7 +36,7 @@ services:
       - FLAG_ENC_KEY=92LkXZb9Co1yh9v8D4vXdFDYuMTCcKLGH0kugYhYieOsUfPz1uXvkZ1A1vehAIMU
       - FLAG_SALT=34pv5o345vi3451
       - FLAG_PATTERN=crab{{d0nt_us3_stup1d_llm_m0d3ls_{sign}}}
-      - TELEGRAM_TOKEN=6767321058:AAH-4FownKK-opx0dtrKGDk7gD48Ue44TWY
+      - TELEGRAM_TOKEN=xxx
       - MONGO_URI=mongodb://root:example@mongo:27017
       - LLAMA_SERVER_URL=http://llama_server:8000/v1
     depends_on:
