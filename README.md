@@ -20,7 +20,7 @@
 | 8   | Почта всему заголовок                | Easy      | [Writeup](tasks/web/task8_headerschall/solution/writeup.md)            |
 | 9   | Хитрый краб чайке не товарищ         | Easy      | [Writeup](tasks/web/task9_cacheserver/solution/writeup.md)             |
 | 10  | Подозрительно сломанные кондиционеры | Easy      | [Exploit (.py)](tasks/web/task10_brokenconditioner/solution/sploit.py) |
-| 11  | Авиачайка                            | Easy      | [Exploit (.py)](tasks/web/task11_aviachaika/task.yaml)                 |
+| 11  | Авиачайка                            | Easy      | [Exploit (.py)](tasks/web/task11_aviachaika/solution/brek.py)          |
 | 12  | Ну хоть дыра у нас в безопасности    | Easy      | [Writeup](tasks/web/task12_social/solution/readme.md)                  |
 | 13  | Микросервис за микросервисом         | Mid       | [Writeup](tasks/web/task13_microservices/solution/Readme.md)           |
 | 14  | Reviews and suggestions              | Mid       | [Exploit (.py)](tasks/web/task14_reviews/solution/solve.py)            |
